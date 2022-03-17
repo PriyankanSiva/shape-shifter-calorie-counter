@@ -21,8 +21,11 @@ app.get("/user-bmr-amr-details", (req, res) => {
   }
 
   if (gender == "Female") {
-    bmr = 10 * weight + 6.25 * height - 5 * years + 161;
+    bmr = 10 * weight + 6.25 * height - 5 * years - 161;
   }
+
+
+  
   if (activicty_level == "Sedentary") {
     amr = bmr * 1.2;
   }
