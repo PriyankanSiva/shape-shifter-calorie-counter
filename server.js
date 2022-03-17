@@ -8,6 +8,14 @@ app.get("/user-bmr-amr-details", (req, res) => {
   let bmr;
   let amr;
   let calories;
+  daily_calorie_intake;
+  daily_calorie_burnby_workout;
+  daily_calorie_burnby_cardio;
+  daily_calorie_intake_by_carb;
+  daily_calorie_intake_by_fat;
+  daily_calorie_intake_by_protein;
+  
+  
   if (gender == "Male") {
     bmr = 10 * weight + 6.25 * height - 5 * years + 5;
   }
@@ -33,13 +41,55 @@ app.get("/user-bmr-amr-details", (req, res) => {
 
   calories = (expectedweight * 500) / weeks;
 
+  
+  
+  
   if (goal == "loser") {
-    
+    daily_calorie_intake = amr - calories;
+    daily_calorie_burnby_workout = 400;
+    daily_calorie_burnby_cardio = 200;
+    daily_calorie_intake_by_carb = daily_calorie_intake * 40/100 ;
+    daily_calorie_intake_by_protein = daily_calorie_intake * 40/100 ;
+    daily_calorie_intake_by_fat = daily_calorie_intake * 20/100 ;
+
+
+  } 
+  
+  if (goal == "maintain") {
+    daily_calorie_intake == amr;
+    daily_calorie_burnby_workout = 400;
+    daily_calorie_intake_by_carb = daily_calorie_intake * 35/100 ;
+    daily_calorie_intake_by_protein = daily_calorie_intake * 35/100 ;
+    daily_calorie_intake_by_fat = daily_calorie_intake * 30/100 ;
+
+   
+
   }
+
+
+  if (goal == "gain") {
+    daily_calorie_intake == amr + calories + 500;
+    daily_calorie_burnby_workout = 400;
+    daily_calorie_intake_by_carb = daily_calorie_intake * 45/100 ;
+    daily_calorie_intake_by_protein = daily_calorie_intake * 35/100 ;
+    daily_calorie_intake_by_fat = daily_calorie_intake * 20/100 ;
+
+
+  }
+
+  
 
   res.json({
     bmr: bmr ? bmr : 0,
     amr: amr ? amr : 0,
+    daily_calorie_intake: daily_calorie_intake ? daily_calorie_intake : 0,
+    daily_calorie_burnby_workout : daily_calorie_burnby_workout ? daily_calorie_burnby_workout : 0,
+    daily_calorie_burnby_cardio : daily_calorie_burnby_cardio ? daily_calorie_burnby_cardio : 0,
+    daily_calorie_intake_by_carb: daily_calorie_intake_by_carb ? daily_calorie_intake_by_carb : 0,
+    daily_calorie_intake_by_protein: daily_calorie_intake_by_protein ? daily_calorie_intake_by_protein : 0,
+    daily_calorie_intake_by_fat: daily_calorie_intake_by_fat ? daily_calorie_intake_by_fat : 0,
+
+
     status: 200,
     user: { ...req.query },
   });
