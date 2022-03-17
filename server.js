@@ -8,12 +8,12 @@ app.get("/user-bmr-amr-details", (req, res) => {
   let bmr;
   let amr;
   let calories;
-  daily_calorie_intake;
-  daily_calorie_burnby_workout;
-  daily_calorie_burnby_cardio;
-  daily_calorie_intake_by_carb;
-  daily_calorie_intake_by_fat;
-  daily_calorie_intake_by_protein;
+  let daily_calorie_intake;
+  let daily_calorie_burnby_workout;
+  let daily_calorie_burnby_cardio;
+  let daily_calorie_intake_by_carb;
+  let daily_calorie_intake_by_fat;
+  let daily_calorie_intake_by_protein;
   
   
   if (gender == "Male") {
@@ -24,8 +24,6 @@ app.get("/user-bmr-amr-details", (req, res) => {
     bmr = 10 * weight + 6.25 * height - 5 * years - 161;
   }
 
-
-  
   if (activicty_level == "Sedentary") {
     amr = bmr * 1.2;
   }
@@ -85,7 +83,7 @@ app.get("/user-bmr-amr-details", (req, res) => {
   res.json({
     bmr: bmr ? bmr : 0,
     amr: amr ? amr : 0,
-    daily_calorie_intake: daily_calorie_intake ? daily_calorie_intake : 0,
+    daily_calorie_intake : daily_calorie_intake ? daily_calorie_intake : 0,
     daily_calorie_burnby_workout : daily_calorie_burnby_workout ? daily_calorie_burnby_workout : 0,
     daily_calorie_burnby_cardio : daily_calorie_burnby_cardio ? daily_calorie_burnby_cardio : 0,
     daily_calorie_intake_by_carb: daily_calorie_intake_by_carb ? daily_calorie_intake_by_carb : 0,
