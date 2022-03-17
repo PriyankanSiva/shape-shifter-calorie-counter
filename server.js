@@ -3,14 +3,14 @@ const app = express();
 
 // GET method route
 app.get("/user-bmr-amr-details", (req, res) => {
-  const { weight, height, gender, years, activicty_level, goal,expectedweight, weeks } =
+  const { weight, height, gender, years, activity_level, goal,goal_weight, weeks } =
     req.query;
   let bmr;
   let amr;
   let calories;
   let daily_calorie_intake;
-  let daily_calorie_burnby_workout;
-  let daily_calorie_burnby_cardio;
+  let daily_calorie_burn_by_workout;
+  let daily_calorie_burn_by_cardio;
   let daily_calorie_intake_by_carb;
   let daily_calorie_intake_by_fat;
   let daily_calorie_intake_by_protein;
@@ -30,25 +30,25 @@ app.get("/user-bmr-amr-details", (req, res) => {
 
   //amr calculation
 
-  if (activicty_level == "sedentary") {
+  if (activity_level == "sedentary") {
     amr = bmr * 1.2;
   }
-  if (activicty_level == "lightactive") {
+  if (activity_level == "lightactive") {
     amr = bmr * 1.375;
   }
-  if (activicty_level == "moderatelyactive") {
+  if (activity_level == "moderatelyactive") {
     amr = bmr * 1.55;
   }
-  if (activicty_level == "active") {
+  if (activity_level == "active") {
     amr = bmr * 1.725;
   }
-  if (activicty_level == "veryactive") {
+  if (activity_level == "veryactive") {
     amr = bmr * 1.9;
   }
 
 
   //calorie calculation
-  calories = ((expectedweight * 500) /
+  calories = ((goal_weight * 500) /
    weeks);
    
 //daily calorie intake and burn calculation
@@ -56,8 +56,8 @@ app.get("/user-bmr-amr-details", (req, res) => {
   if (goal == "lose") {
    
     //workout section
-    daily_calorie_burnby_workout = 400;
-    daily_calorie_burnby_cardio = 200;
+    daily_calorie_burn_by_workout = 400;
+    daily_calorie_burn_by_cardio = 200;
 
     //diet section
      daily_calorie_intake = amr - calories;
@@ -69,8 +69,12 @@ app.get("/user-bmr-amr-details", (req, res) => {
   } 
   
   if (goal == "maintain") {
+   
+    //workout section
+    daily_calorie_burn_by_workout = 400;
+
+    //diet section
     daily_calorie_intake == amr;
-    daily_calorie_burnby_workout = 400;
     daily_calorie_intake_by_carb = daily_calorie_intake * 35/100 ;
     daily_calorie_intake_by_protein = daily_calorie_intake * 35/100 ;
     daily_calorie_intake_by_fat = daily_calorie_intake * 30/100 ;
@@ -81,8 +85,12 @@ app.get("/user-bmr-amr-details", (req, res) => {
 
 
   if (goal == "gain") {
+
+    //workout section
+    daily_calorie_burn_by_workout = 400;
+
+    //diet section
     daily_calorie_intake == amr + calories + 500;
-    daily_calorie_burnby_workout = 400;
     daily_calorie_intake_by_carb = daily_calorie_intake * 45/100 ;
     daily_calorie_intake_by_protein = daily_calorie_intake * 35/100 ;
     daily_calorie_intake_by_fat = daily_calorie_intake * 20/100 ;
