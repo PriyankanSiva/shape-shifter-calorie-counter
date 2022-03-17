@@ -40,11 +40,9 @@ app.get("/user-bmr-amr-details", (req, res) => {
     amr = bmr * 1.9;
   }
 
-  calories = (expectedweight * 500) / weeks;
-
-  
-  
-  
+  calories = ((expectedweight * 500) /
+   weeks);
+   
   if (goal == "lose") {
     daily_calorie_intake = amr - calories;
     daily_calorie_burnby_workout = 400;
