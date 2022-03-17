@@ -16,27 +16,27 @@ app.get("/user-bmr-amr-details", (req, res) => {
   let daily_calorie_intake_by_protein;
   
   
-  if (gender == "Male") {
+  if (gender == "male") {
     bmr = 10 * weight + 6.25 * height - 5 * years + 5;
   }
 
-  if (gender == "Female") {
+  if (gender == "female") {
     bmr = 10 * weight + 6.25 * height - 5 * years - 161;
   }
 
-  if (activicty_level == "Sedentary") {
+  if (activicty_level == "sedentary") {
     amr = bmr * 1.2;
   }
-  if (activicty_level == "Light Active") {
+  if (activicty_level == "lightactive") {
     amr = bmr * 1.375;
   }
-  if (activicty_level == "Moderately Active") {
+  if (activicty_level == "moderatelyactive") {
     amr = bmr * 1.55;
   }
-  if (activicty_level == "Active") {
+  if (activicty_level == "active") {
     amr = bmr * 1.725;
   }
-  if (activicty_level == "Very Active") {
+  if (activicty_level == "veryactive") {
     amr = bmr * 1.9;
   }
 
@@ -45,7 +45,7 @@ app.get("/user-bmr-amr-details", (req, res) => {
   
   
   
-  if (goal == "loser") {
+  if (goal == "lose") {
     daily_calorie_intake = amr - calories;
     daily_calorie_burnby_workout = 400;
     daily_calorie_burnby_cardio = 200;
