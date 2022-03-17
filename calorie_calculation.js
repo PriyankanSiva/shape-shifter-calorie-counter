@@ -116,9 +116,9 @@ app.get("/user-bmr-amr-details", (req, res) => {
   });
 });
 
-//Create a Server
-const server = app.listen("8080", "127.0.0.1", function () {
-  const host = server.address().address;
-  const port = server.address().port;
+//Create a Server >> Calorie Calculation
+const calorie_calculation = app.listen("8080", "127.0.0.1", function () {
+  const host = calorie_calculation.address().address;
+  const port = calorie_calculation.address().port;
   console.log("App listening at http://%s:%s", host, port);
 });
