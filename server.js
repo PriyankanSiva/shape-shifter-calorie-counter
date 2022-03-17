@@ -15,6 +15,9 @@ app.get("/user-bmr-amr-details", (req, res) => {
   let daily_calorie_intake_by_fat;
   let daily_calorie_intake_by_protein;
   
+
+  
+//bmr calculation
   
   if (gender == "male") {
     bmr = 10 * weight + 6.25 * height - 5 * years + 5;
@@ -23,6 +26,9 @@ app.get("/user-bmr-amr-details", (req, res) => {
   if (gender == "female") {
     bmr = 10 * weight + 6.25 * height - 5 * years - 161;
   }
+
+
+  //amr calculation
 
   if (activicty_level == "sedentary") {
     amr = bmr * 1.2;
@@ -40,13 +46,21 @@ app.get("/user-bmr-amr-details", (req, res) => {
     amr = bmr * 1.9;
   }
 
+
+  //calorie calculation
   calories = ((expectedweight * 500) /
    weeks);
    
+//daily calorie intake and burn calculation
+
   if (goal == "lose") {
-    daily_calorie_intake = amr - calories;
+   
+    //workout section
     daily_calorie_burnby_workout = 400;
     daily_calorie_burnby_cardio = 200;
+
+    //diet section
+     daily_calorie_intake = amr - calories;
     daily_calorie_intake_by_carb = daily_calorie_intake * 40/100 ;
     daily_calorie_intake_by_protein = daily_calorie_intake * 40/100 ;
     daily_calorie_intake_by_fat = daily_calorie_intake * 20/100 ;
@@ -77,7 +91,7 @@ app.get("/user-bmr-amr-details", (req, res) => {
   }
 
   
-
+//response data
   res.json({
     bmr: bmr ? bmr : 0,
     amr: amr ? amr : 0,
