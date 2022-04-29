@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { collection, addDoc, getDocs, getFirestore, doc, setDoc } from "firebase/firestore";
 import express from "express";
 
-var PORT = process.env.PORT || 5000;
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -160,7 +159,8 @@ app.get("/user-bmr-amr-details", async function (req, res) {
 
 var server = app.listen(8081, function () {
     var host = server.address().address;
-    var port = server.address().port;
+    var PORT = process.env.PORT || 5000;
+
 
     console.log("Example app listening at http://%s:%s", host, port);
 });
