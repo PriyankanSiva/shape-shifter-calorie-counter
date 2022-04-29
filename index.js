@@ -156,11 +156,11 @@ app.get("/user-bmr-amr-details", async function (req, res) {
         res.send({ msg: "failed" }).status(404);
     }
 });
+var PORT = process.env.PORT || 5000;
 
-var server = app.listen(8081, function () {
+var server = app.listen(PORT, function () {
     var host = server.address().address;
-    var PORT = process.env.PORT || 8081;
-
+    var port = server.address().port;
 
     console.log("Example app listening at http://%s:%s", host, port);
 });
