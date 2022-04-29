@@ -1,7 +1,9 @@
+
 import { initializeApp } from "firebase/app";
 import { collection, addDoc, getDocs, getFirestore, doc, setDoc } from "firebase/firestore";
 import express from "express";
 
+var PORT = process.env.PORT || 5000;
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
@@ -92,6 +94,7 @@ function calculatedCalorie(req) {
 
     //daily calorie intake and burn calculation
 
+    
     if (goal == "lose") {
         //workout section
         daily_calorie_burn_by_workout = 400;
@@ -107,6 +110,8 @@ function calculatedCalorie(req) {
     if (goal == "maintain") {
         //workout section
         daily_calorie_burn_by_workout = 400;
+        daily_calorie_burn_by_cardio = 0;
+
 
         //diet section
         daily_calorie_intake == amr;
@@ -114,17 +119,18 @@ function calculatedCalorie(req) {
         daily_calorie_intake_by_protein = (daily_calorie_intake * 35) / 100;
         daily_calorie_intake_by_fat = (daily_calorie_intake * 30) / 100;
     }
-
     if (goal == "gain") {
-        //workout section
-        daily_calorie_burn_by_workout = 400;
+      //workout section
+      daily_calorie_burn_by_workout = 400;
+      daily_calorie_burn_by_cardio = 0;
 
-        //diet section
-        daily_calorie_intake == amr + calories + 500;
-        daily_calorie_intake_by_carb = (daily_calorie_intake * 45) / 100;
-        daily_calorie_intake_by_protein = (daily_calorie_intake * 35) / 100;
-        daily_calorie_intake_by_fat = (daily_calorie_intake * 20) / 100;
+      //diet section
+      daily_calorie_intake == amr + calories + 500;
+      daily_calorie_intake_by_carb = (daily_calorie_intake * 45) / 100;
+      daily_calorie_intake_by_protein = (daily_calorie_intake * 35) / 100;
+      daily_calorie_intake_by_fat = (daily_calorie_intake * 20) / 100;
     }
+
 
     return {
         bmr: bmr ? bmr : 0,
